@@ -1,0 +1,19 @@
+# Terraform local files
+.terraform/
+.terraform.lock.hcl
+
+# State files - never commit
+*.tfstate
+*.tfstate.backup
+
+# Sensitive variables - never commit
+*.tfvars
+*.tfvars.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
