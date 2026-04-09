@@ -5,13 +5,17 @@ module "vpc" {
   private_subnets     = var.private_subnets
 }
 
+module "sg" {
+  source = "./modules/sg"
+  vpc_id = module.vpc.vpc_id
+}
+
 module "alb" {
   source     = "./modules/alb"
   vpc_id     = module.vpc.vpc_id
-  # This is now a simple list of strings, exactly what the ALB wants
   subnet_ids = module.vpc.public_subnet_ids
+  alb_sg_id  = module.sg.alb_sg_id
 }
-
 
 module "igw" {
   source = "./modules/igw"
@@ -31,4 +35,10 @@ module "rtb" {
   nat_gateway_ids = module.nat.nat_gateway_ids
   public_subnet_ids = module.vpc.public_subnet_ids
   private_subnet_ids = module.vpc.private_subnet_ids
+}
+
+module "ec2-asg" {
+  source            = "./modules/ec2-asg"
+  subnet_ids        = module.vpc.private_subnet_ids
+  security_group_ids = [module.sg.ec2_sg_id]
 }

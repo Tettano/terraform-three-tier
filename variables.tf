@@ -23,4 +23,4 @@ variable "private_subnets" {
     "use1a" = { cidr_block = "10.0.2.0/24", az = "us-east-1a" }
     "use1b" = { cidr_block = "10.0.4.0/24", az = "us-east-1b" }
   }
-}  
+}

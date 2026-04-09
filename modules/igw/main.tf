@@ -1,5 +1,5 @@
 resource "aws_internet_gateway" "igw" {
-  tags = { Name = "main-igw" }
+  tags = var.igw_tags
 }
 
 resource "aws_internet_gateway_attachment" "igw_attachment" {
