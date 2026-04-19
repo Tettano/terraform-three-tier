@@ -24,3 +24,17 @@ variable "private_subnets" {
     "use1b" = { cidr_block = "10.0.4.0/24", az = "us-east-1b" }
   }
 }
+
+variable "db_credentials" {
+  type = object({
+    username = string
+    password = string
+  })
+  sensitive = true
+  description = "RDS Database Credentials"
+  default = {
+    username = "admin"
+    password = "password123"
+  }
+}
+

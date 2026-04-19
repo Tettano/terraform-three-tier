@@ -33,6 +33,22 @@ variable "security_group_rules_ec2_asg" {
     }
 }
 
+variable "security_group_rules_rds" {
+    type = map(object({
+        port        = number
+        protocol    = string
+        description = string
+    }))
+    default = { 
+        
+        "mysql"  =   { port = 3306,    protocol = "tcp", description = "Allow MySQL traffic from EC2 instances and ALB only" } 
+        "https"  =   { port = 443,     protocol = "tcp", description = "Allow HTTPS traffic for updates, etc." }
+        
+    
+    }
+  
+}
+
 variable "common_tags" {
   type = map(string)
   default = {

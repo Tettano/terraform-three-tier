@@ -77,5 +77,30 @@ resource "aws_iam_role_policy_attachment" "ssm" {
 
 
 
-# For tomorrow create a variale for each value of ingress and egress to avoid hardcoding and make it more flexible. 
-# Also add tags to the security groups for better identification using for_each and a map variable for tags.
+# Creating a security group for the RDS instance to allow it to communicate with the EC2 instances and the ALB, as well as allowing it to access the internet for updates, etc.
+
+  resource "aws_security_group" "rds_sg" {
+    name = "rds-sg"
+    vpc_id = var.vpc_id
+
+    dynamic ingress {
+      for_each = var.security_group_rules_rds
+      content {
+        description     = ingress.value.description
+        from_port       = ingress.value.port
+        to_port         = ingress.value.port
+        protocol        = ingress.value.protocol
+        security_groups = [aws_security_group.ec2_sg.id]  # Allow from EC2 and ALB
+      }
+    }
+
+    egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = merge(var.common_tags, { Name = "rds-sg" })
+    
+  }

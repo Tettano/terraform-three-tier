@@ -42,3 +42,16 @@ module "ec2-asg" {
   subnet_ids        = module.vpc.private_subnet_ids
   security_group_ids = [module.sg.ec2_sg_id]
 }
+
+module "rds" {
+  source                  = "./modules/rds"
+  vpc_security_group_ids  = [module.sg.rds_sg_id]
+  private_subnet_ids      = module.vpc.private_subnet_ids
+  db_credentials          = var.db_credentials
+
+  depends_on = [
+    module.vpc,
+    module.sg,
+    module.rtb
+  ]
+}

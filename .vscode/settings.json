@@ -1,0 +1,8 @@
+{
+    "yaml.schemas": {
+        "file:///Users/shawnretes/.vscode/extensions/continue.continue-1.2.22-darwin-arm64/config-yaml-schema.json": [
+            ".continue/**/*.yaml",
+            "file:///Users/shawnretes/.continue/config.yaml"
+        ]
+    }
+}
