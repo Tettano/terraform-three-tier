@@ -1,6 +1,6 @@
 variable "ami" {
   type        = string
-  default     = "ami-0ea87431b78a82070"  # Amazon Linux 2 AMI for us-east-1
+  default     = "ami-0ea87431b78a82070" # Amazon Linux 2 AMI for us-east-1
   description = "AMI ID for the instances"
 }
 
@@ -43,22 +43,22 @@ variable "subnet_ids" {
 #   default     = 2
 #   description = "Desired number of instances in the ASG"
 # }   
-  
+
 variable "security_group_ids" {
-  type = list(string)
+  type        = list(string)
   description = "List of security group for the instances"
-  default = []
+  default     = []
 }
 
 variable "template_value" {
   type = object({
-    min       = number
-    max_size  = number
+    min              = number
+    max_size         = number
     desired_capacity = number
   })
   default = {
-    min       = 1
-    max_size  = 3
+    min              = 1
+    max_size         = 3
     desired_capacity = 2
   }
 

@@ -3,6 +3,6 @@ output "db_instance" {
 }
 
 output "rds_db_credentials" {
-  value = var.db_credentials
+  value     = var.db_credentials
   sensitive = true
 }

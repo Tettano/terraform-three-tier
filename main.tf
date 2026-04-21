@@ -23,31 +23,31 @@ module "igw" {
 }
 
 module "nat" {
-  source = "./modules/nat"
-  public_subnet_ids = module.vpc.public_subnet_ids
+  source             = "./modules/nat"
+  public_subnet_ids  = module.vpc.public_subnet_ids
   public_subnet_tags = module.vpc.vpc_public_tags
 }
 
 module "rtb" {
-  source         = "./modules/rtb"
-  vpc_id         = module.vpc.vpc_id
-  igw_id         = module.igw.internet-gateway-id
-  nat_gateway_ids = module.nat.nat_gateway_ids
-  public_subnet_ids = module.vpc.public_subnet_ids
+  source             = "./modules/rtb"
+  vpc_id             = module.vpc.vpc_id
+  igw_id             = module.igw.internet-gateway-id
+  nat_gateway_ids    = module.nat.nat_gateway_ids
+  public_subnet_ids  = module.vpc.public_subnet_ids
   private_subnet_ids = module.vpc.private_subnet_ids
 }
 
 module "ec2-asg" {
-  source            = "./modules/ec2-asg"
-  subnet_ids        = module.vpc.private_subnet_ids
+  source             = "./modules/ec2-asg"
+  subnet_ids         = module.vpc.private_subnet_ids
   security_group_ids = [module.sg.ec2_sg_id]
 }
 
 module "rds" {
-  source                  = "./modules/rds"
-  vpc_security_group_ids  = [module.sg.rds_sg_id]
-  private_subnet_ids      = module.vpc.private_subnet_ids
-  db_credentials          = var.db_credentials
+  source                 = "./modules/rds"
+  vpc_security_group_ids = [module.sg.rds_sg_id]
+  private_subnet_ids     = module.vpc.private_subnet_ids
+  db_credentials         = var.db_credentials
 
   depends_on = [
     module.vpc,

@@ -30,7 +30,7 @@ variable "db_credentials" {
     username = string
     password = string
   })
-  sensitive = true
+  sensitive   = true
   description = "RDS Database Credentials"
   default = {
     username = "admin"
