@@ -26,23 +26,23 @@ variable "subnet_ids" {
   description = "List of subnet IDs for the ASG"
 }
 
-variable "min_size" {
-  type        = number
-  default     = 1
-  description = "Minimum number of instances in the ASG"
-}
+# variable "min_size" {
+#   type        = number
+#   default     = 1
+#   description = "Minimum number of instances in the ASG"
+# }
 
-variable "max_size" {
-  type        = number
-  default     = 3
-  description = "Maximum number of instances in the ASG"
-}
+# variable "max_size" {
+#   type        = number
+#   default     = 3
+#   description = "Maximum number of instances in the ASG"
+# }
 
-variable "desired_capacity" {
-  type        = number
-  default     = 2
-  description = "Desired number of instances in the ASG"
-}   
+# variable "desired_capacity" {
+#   type        = number
+#   default     = 2
+#   description = "Desired number of instances in the ASG"
+# }   
   
 variable "security_group_ids" {
   type = list(string)
