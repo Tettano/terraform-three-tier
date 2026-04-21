@@ -41,4 +41,3 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private[count.index].id
 }
 
-# creating a route for the RDS instance in the private route table to allow it to access the internet for updates, etc.
