@@ -15,10 +15,10 @@ resource "aws_launch_template" "web-server" {
 resource "aws_autoscaling_group" "web-server-asg" {
   for_each = aws_launch_template.web-server
 
-  name_prefix = "asg-${each.value.tags["Name"]}-"
+  name_prefix = "asg-${each.value.name}-"
 
   launch_template {
-    id      = each.value.id
+    id      = aws_launch_template.web-server[each.key].id
     version = "$Latest"
   }
 
@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "web-server-asg" {
 
   tag {
     key                 = "Name"
-    value               = "asg-${each.value.tags["Name"]}"
+    value               = "asg-${each.value.name}"
     propagate_at_launch = true
   }
 }
