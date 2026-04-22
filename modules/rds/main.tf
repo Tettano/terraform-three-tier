@@ -1,7 +1,7 @@
 resource "aws_db_parameter_group" "rds" {
   for_each = var.rds
 
-  family = "${each.value.engine}${split(".", each.value.engine_version)[0]}"
+  family = each.value.parameter_group_family
   name   = "rds-param-group-${each.key}"
 
   tags = merge(var.common_tags, { Name = "RDS Parameter Group - ${each.key}" })

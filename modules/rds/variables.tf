@@ -11,6 +11,7 @@ variable "rds" {
     sensitive            = bool
     storage_encrypted    = bool
 
+
   }))
   default = {
 
@@ -25,7 +26,6 @@ variable "rds" {
       multi_az             = true,
       sensitive            = true,
       storage_encrypted    = true,
-
 
     }
   }
