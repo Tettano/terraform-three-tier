@@ -21,7 +21,7 @@ variable "rds" {
       db_name                = "mydb",
       engine                 = "mysql",
       engine_version         = "8.0.35",
-      instance_class         = "db.t3.micro",
+      instance_class         = "db.t3.small",
       parameter_group_family = "mysql8.0",
       skip_final_snapshot    = false,
       multi_az               = true,
