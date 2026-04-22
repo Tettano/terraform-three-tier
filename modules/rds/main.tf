@@ -1,10 +1,11 @@
-resource "aws_db_subnet_group" "rds" {
-  name       = "rds-subnet-group"
-  subnet_ids = var.private_subnet_ids
+resource "aws_db_parameter_group" "rds" {
+  for_each = var.rds
 
-  tags = merge(var.common_tags, { Name = "RDS Subnet Group" })
+  family = "${each.value.engine}${split(".", each.value.engine_version)[0]}"
+  name   = "rds-param-group-${each.key}"
+
+  tags = merge(var.common_tags, { Name = "RDS Parameter Group - ${each.key}" })
 }
-
 resource "aws_db_instance" "myrds" {
 
   for_each = var.rds
@@ -16,11 +17,10 @@ resource "aws_db_instance" "myrds" {
   instance_class         = each.value.instance_class
   username               = var.db_credentials.username
   password               = var.db_credentials.password
-  parameter_group_name   = each.value.parameter_group_name
+  parameter_group_name   = aws_db_parameter_group.rds[each.key].name
   skip_final_snapshot    = each.value.skip_final_snapshot
   multi_az               = each.value.multi_az
   vpc_security_group_ids = var.vpc_security_group_ids
-  db_subnet_group_name   = aws_db_subnet_group.rds.name
   storage_encrypted      = each.value.storage_encrypted
 
   tags = merge(var.common_tags, { Name = "RDS Instance - ${each.key}" })

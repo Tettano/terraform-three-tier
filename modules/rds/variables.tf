@@ -15,12 +15,12 @@ variable "rds" {
   default = {
 
     "myrds" = {
-      allocated_storage    = 1024,
+      allocated_storage    = 20,
       db_name              = "mydb",
       engine               = "mysql",
-      engine_version       = "8.0",
+      engine_version       = "8.0.35",
       instance_class       = "db.t3.micro",
-      parameter_group_name = "default.mysql8.0 ",
+      parameter_group_name = "default.mysql8.0",
       skip_final_snapshot  = false,
       multi_az             = true,
       sensitive            = true,
@@ -53,5 +53,9 @@ variable "db_credentials" {
     password = string
   })
   sensitive = true
-
+  default = {
+    username = "admin"
+    password = "password123"
+  }
 }
+
