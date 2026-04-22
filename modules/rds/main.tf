@@ -30,6 +30,7 @@ resource "aws_db_instance" "myrds" {
   vpc_security_group_ids = var.vpc_security_group_ids
   storage_encrypted      = each.value.storage_encrypted
   db_subnet_group_name   = aws_db_subnet_group.rds.name
+  storage_type           = each.value.storage_type
 
   tags = merge(var.common_tags, { Name = "RDS Instance - ${each.key}" })
 }
