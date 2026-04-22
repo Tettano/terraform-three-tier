@@ -10,7 +10,7 @@ variable "rds" {
     multi_az               = bool
     sensitive              = bool
     storage_encrypted      = bool
-
+    storage_type           = string
 
 
   }))
@@ -20,14 +20,14 @@ variable "rds" {
       allocated_storage      = 20,
       db_name                = "mydb",
       engine                 = "mysql",
-      engine_version         = "8.0.35",
+      engine_version         = "8.0.28",
       instance_class         = "db.t3.small",
       parameter_group_family = "mysql8.0",
       skip_final_snapshot    = false,
       multi_az               = true,
       sensitive              = true,
       storage_encrypted      = true,
-
+      storage_type           = "gp2"
     }
   }
 }
