@@ -12,9 +12,9 @@ module "sg" {
 }
 
 module "igw" {
-  source     = "./modules/igw"
-  vpc_id     = module.vpc.vpc_id
-  depends_on = [module.nat, module.ec2-asg, module.rds, module.alb]
+  source = "./modules/igw"
+  vpc_id = module.vpc.vpc_id
+
 }
 
 module "nat" {
