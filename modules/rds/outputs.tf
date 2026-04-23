@@ -1,5 +1,6 @@
 output "db_instance" {
-  value = aws_db_instance.myrds
+  value     = aws_db_instance.myrds
+  sensitive = true
 }
 
 output "rds_db_credentials" {
