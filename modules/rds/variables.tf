@@ -37,13 +37,13 @@ variable "rds" {
 variable "vpc_security_group_ids" {
   type        = list(string)
   description = "List of VPC security group IDs to associate with the DB instance"
-  default     = {}
+  default     = []
 }
 
 variable "private_subnet_ids" {
   type        = list(string)
   description = "List of private subnet IDs for DB subnet group"
-  default     = {}
+  default     = []
 }
 
 variable "common_tags" {
