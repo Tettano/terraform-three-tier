@@ -8,11 +8,12 @@ This is the second project in my cloud infrastructure portfolio, building on top
 
 ## Architecture
 
-```
 
 
-```
+<img width="618" height="565" alt="Screenshot 2026-03-26 at 12 56 39 PM" src="https://github.com/user-attachments/assets/e1c3da07-b600-4dd5-aaaa-d5b27c38bbd9" />
 
+
+›gi
 ---
 
 ## What Gets Deployed
