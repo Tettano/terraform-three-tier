@@ -8,6 +8,7 @@ variable "rds" {
     parameter_group_family    = string
     skip_final_snapshot       = bool
     final_snapshot_identifier = string
+    delete_automated_backups  = bool
     multi_az                  = bool
     sensitive                 = bool
     storage_encrypted         = bool
@@ -26,6 +27,7 @@ variable "rds" {
       parameter_group_family    = "mysql8.4",
       skip_final_snapshot       = true,
       final_snapshot_identifier = "myrds-final-snapshot",
+      delete_automated_backups  = true,
       multi_az                  = true,
       sensitive                 = true,
       storage_encrypted         = true,
